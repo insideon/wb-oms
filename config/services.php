@@ -35,4 +35,19 @@ return [
         ],
     ],
 
+    'wildberries' => [
+        'api_key' => env('WILDBERRIES_API_KEY'),
+        'base_url' => env('WILDBERRIES_BASE_URL', 'https://suppliers-api.wildberries.ru'),
+    ],
+
+    'wms' => [
+        'api_key' => env('WMS_API_KEY'),
+        'base_url' => env('WMS_BASE_URL'),
+    ],
+
+    'translation' => [
+        'provider' => env('TRANSLATION_PROVIDER', 'google'), // google, deepl, yandex
+        'api_key' => env('TRANSLATION_API_KEY'),
+    ],
+
 ];
