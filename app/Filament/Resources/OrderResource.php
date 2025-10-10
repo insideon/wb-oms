@@ -106,16 +106,18 @@ class OrderResource extends Resource
                     ->label('고객명')
                     ->searchable()
                     ->description(fn (Order $record): string => $record->customer_name),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label('상태')
-                    ->colors([
-                        'secondary' => 'pending',
-                        'info' => 'translated',
-                        'primary' => 'wms_sent',
-                        'warning' => 'shipped',
-                        'success' => 'completed',
-                        'danger' => 'cancelled',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'gray',
+                        'translated' => 'info',
+                        'wms_sent' => 'primary',
+                        'shipped' => 'warning',
+                        'completed' => 'success',
+                        'cancelled' => 'danger',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'pending' => '대기중',
                         'translated' => '번역완료',

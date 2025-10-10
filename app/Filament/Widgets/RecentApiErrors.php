@@ -25,21 +25,31 @@ class RecentApiErrors extends BaseWidget
                     ->limit(10)
             )
             ->columns([
-                Tables\Columns\BadgeColumn::make('service')
+                Tables\Columns\TextColumn::make('service')
                     ->label('서비스')
-                    ->colors([
-                        'primary' => 'wildberries',
-                        'success' => 'wms',
-                        'warning' => 'translation',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'wildberries' => 'primary',
+                        'wms' => 'success',
+                        'translation' => 'warning',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'wildberries' => 'Wildberries',
                         'wms' => 'WMS',
                         'translation' => 'Translation',
                         default => $state,
                     }),
-                Tables\Columns\BadgeColumn::make('method')
-                    ->label('메서드'),
+                Tables\Columns\TextColumn::make('method')
+                    ->label('메서드')
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'GET' => 'info',
+                        'POST' => 'success',
+                        'PUT' => 'warning',
+                        'DELETE' => 'danger',
+                        default => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('endpoint')
                     ->label('엔드포인트')
                     ->limit(30),

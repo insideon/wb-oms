@@ -90,15 +90,17 @@ class WmsShipmentResource extends Resource
                     ->label('송장번호')
                     ->searchable()
                     ->copyable(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label('배송 상태')
-                    ->colors([
-                        'secondary' => 'pending',
-                        'info' => 'processing',
-                        'warning' => 'shipped',
-                        'success' => 'delivered',
-                        'danger' => 'failed',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'pending' => 'gray',
+                        'processing' => 'info',
+                        'shipped' => 'warning',
+                        'delivered' => 'success',
+                        'failed' => 'danger',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'pending' => '대기중',
                         'processing' => '처리중',

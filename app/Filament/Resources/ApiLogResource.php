@@ -92,27 +92,31 @@ class ApiLogResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\BadgeColumn::make('service')
+                Tables\Columns\TextColumn::make('service')
                     ->label('서비스')
-                    ->colors([
-                        'primary' => 'wildberries',
-                        'success' => 'wms',
-                        'warning' => 'translation',
-                    ])
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'wildberries' => 'primary',
+                        'wms' => 'success',
+                        'translation' => 'warning',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'wildberries' => 'Wildberries',
                         'wms' => 'WMS',
                         'translation' => 'Translation',
                         default => $state,
                     }),
-                Tables\Columns\BadgeColumn::make('method')
+                Tables\Columns\TextColumn::make('method')
                     ->label('메서드')
-                    ->colors([
-                        'info' => 'GET',
-                        'success' => 'POST',
-                        'warning' => 'PUT',
-                        'danger' => 'DELETE',
-                    ]),
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
+                        'GET' => 'info',
+                        'POST' => 'success',
+                        'PUT' => 'warning',
+                        'DELETE' => 'danger',
+                        default => 'gray',
+                    }),
                 Tables\Columns\TextColumn::make('endpoint')
                     ->label('엔드포인트')
                     ->searchable()
@@ -122,13 +126,15 @@ class ApiLogResource extends Resource
                     ->badge()
                     ->color(fn ($state) => $state >= 200 && $state < 300 ? 'success' : 'danger')
                     ->sortable(),
-                Tables\Columns\BadgeColumn::make('status')
+                Tables\Columns\TextColumn::make('status')
                     ->label('상태')
-                    ->colors([
+                    ->badge()
+                    ->color(fn (string $state): string => match ($state) {
                         'success' => 'success',
-                        'danger' => 'failed',
-                        'warning' => 'error',
-                    ])
+                        'failed' => 'danger',
+                        'error' => 'warning',
+                        default => 'gray',
+                    })
                     ->formatStateUsing(fn (string $state): string => match ($state) {
                         'success' => '성공',
                         'failed' => '실패',
