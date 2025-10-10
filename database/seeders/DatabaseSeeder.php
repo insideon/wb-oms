@@ -23,8 +23,11 @@ class DatabaseSeeder extends Seeder
             User::factory()->create([
                 'name' => 'Admin',
                 'email' => 'admin@example.com',
+                'password' => bcrypt('Demo@WB2025!'),
             ]);
             $this->command->info('✅ 관리자 계정 생성 완료');
+            $this->command->info('   Email: admin@example.com');
+            $this->command->info('   Password: Demo@WB2025!');
         }
 
         // 상품 생성 (50개)

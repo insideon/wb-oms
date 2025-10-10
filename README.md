@@ -104,7 +104,8 @@ php artisan make:filament-user
 
 또는 이미 생성된 계정 사용:
 - Email: admin@example.com
-- Password: password
+- Password: Demo@WB2025!
+- **참고**: 로그인 페이지에서 데모 계정 정보가 자동으로 입력됩니다.
 
 ### 5. 프론트엔드 빌드
 
