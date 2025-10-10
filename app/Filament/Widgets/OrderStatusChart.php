@@ -11,6 +11,8 @@ class OrderStatusChart extends ChartWidget
 
     protected static ?int $sort = 3;
 
+    protected static ?string $maxHeight = '300px';
+
     protected function getData(): array
     {
         $pending = Order::where('status', 'pending')->count();

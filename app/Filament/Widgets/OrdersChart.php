@@ -12,6 +12,8 @@ class OrdersChart extends ChartWidget
 
     protected static ?int $sort = 2;
 
+    protected static ?string $maxHeight = '300px';
+
     protected function getData(): array
     {
         $data = $this->getOrdersPerDay();
