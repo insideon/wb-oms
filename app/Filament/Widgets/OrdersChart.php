@@ -12,7 +12,10 @@ class OrdersChart extends ChartWidget
 
     protected static ?int $sort = 2;
 
-    protected static ?string $maxHeight = '300px';
+    protected int|string|array $columnSpan = [
+        'md' => 2,
+        'xl' => 1,
+    ];
 
     protected function getData(): array
     {
@@ -34,6 +37,14 @@ class OrdersChart extends ChartWidget
     protected function getType(): string
     {
         return 'line';
+    }
+
+    protected function getOptions(): array
+    {
+        return [
+            'maintainAspectRatio' => false,
+            'aspectRatio' => 2,
+        ];
     }
 
     private function getOrdersPerDay(): array
