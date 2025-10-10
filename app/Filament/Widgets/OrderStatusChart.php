@@ -43,14 +43,23 @@ class OrderStatusChart extends ChartWidget
 
     protected function getType(): string
     {
-        return 'doughnut';
+        return 'bar';
     }
 
     protected function getOptions(): array
     {
         return [
+            'indexAxis' => 'y',
             'maintainAspectRatio' => true,
             'aspectRatio' => 3,
+            'scales' => [
+                'x' => [
+                    'beginAtZero' => true,
+                    'ticks' => [
+                        'precision' => 0,
+                    ],
+                ],
+            ],
         ];
     }
 }
