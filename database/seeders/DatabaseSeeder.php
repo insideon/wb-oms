@@ -27,14 +27,14 @@ class DatabaseSeeder extends Seeder
             $this->command->info('✅ 관리자 계정 생성 완료');
         }
 
-        // 상품 생성 (20개)
+        // 상품 생성 (50개)
         $this->command->info('📦 상품 생성 중...');
-        $products = Product::factory(20)->create();
-        $this->command->info('✅ 상품 20개 생성 완료');
+        $products = Product::factory(50)->create();
+        $this->command->info('✅ 상품 50개 생성 완료');
 
-        // 주문 생성 (50개)
+        // 주문 생성 (200개)
         $this->command->info('🛒 주문 생성 중...');
-        Order::factory(50)->create()->each(function ($order) use ($products) {
+        Order::factory(200)->create()->each(function ($order) use ($products) {
             // 각 주문에 1-4개의 아이템 추가
             $itemCount = rand(1, 4);
             $totalAmount = 0;
@@ -67,12 +67,12 @@ class DatabaseSeeder extends Seeder
                 ]);
             }
         });
-        $this->command->info('✅ 주문 50개 및 주문 아이템 생성 완료');
+        $this->command->info('✅ 주문 200개 및 주문 아이템 생성 완료');
 
-        // API 로그 생성 (100개)
+        // API 로그 생성 (500개)
         $this->command->info('📝 API 로그 생성 중...');
-        ApiLog::factory(100)->create();
-        $this->command->info('✅ API 로그 100개 생성 완료');
+        ApiLog::factory(500)->create();
+        $this->command->info('✅ API 로그 500개 생성 완료');
 
         $this->command->info('');
         $this->command->info('🎉 모든 데이터 시딩 완료!');
