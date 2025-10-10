@@ -11,10 +11,7 @@ class OrderStatusChart extends ChartWidget
 
     protected static ?int $sort = 3;
 
-    protected int|string|array $columnSpan = [
-        'md' => 2,
-        'xl' => 1,
-    ];
+    protected int|string|array $columnSpan = 'full';
 
     protected function getData(): array
     {
@@ -52,8 +49,8 @@ class OrderStatusChart extends ChartWidget
     protected function getOptions(): array
     {
         return [
-            'maintainAspectRatio' => false,
-            'aspectRatio' => 2,
+            'maintainAspectRatio' => true,
+            'aspectRatio' => 3,
         ];
     }
 }
