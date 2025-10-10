@@ -73,7 +73,13 @@ return [
         ],
 
         'widgets' => [
-            'AccountWidget', 'FilamentInfoWidget',
+            'AccountWidget',
+            'FilamentInfoWidget',
+            'StatsOverview',
+            'OrdersChart',
+            'LowStockProducts',
+            'RecentOrders',
+            'RecentApiErrors',
         ],
 
         'resources' => [],
