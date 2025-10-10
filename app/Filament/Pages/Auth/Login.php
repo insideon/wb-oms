@@ -28,8 +28,7 @@ class Login extends BaseLogin
             ->required()
             ->autocomplete()
             ->autofocus()
-            ->extraInputAttributes(['tabindex' => 1])
-            ->helperText('데모 계정이 자동으로 입력되어 있습니다.');
+            ->extraInputAttributes(['tabindex' => 1]);
     }
 
     protected function getPasswordFormComponent(): Component
@@ -38,7 +37,6 @@ class Login extends BaseLogin
             ->label('비밀번호')
             ->password()
             ->required()
-            ->extraInputAttributes(['tabindex' => 2])
-            ->helperText('데모 계정 비밀번호: Demo@WB2025!');
+            ->extraInputAttributes(['tabindex' => 2]);
     }
 }
